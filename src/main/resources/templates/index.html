@@ -1,0 +1,98 @@
+<html>
+<head>
+
+<meta charset="utf-8" />
+
+
+<link href="./static/css/aos.css" th:href="@{/css/aos.css}"
+	rel="stylesheet" />
+<link href="./static/css/style.css" th:href="@{/css/style.css}"
+	rel="stylesheet" />
+
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+	crossorigin="anonymous">
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+	integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+	integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+	crossorigin="anonymous"></script>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+	integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+	crossorigin="anonymous"></script>
+
+
+<style>
+img {
+	height: 170px
+}
+
+.zoom {
+	max-width: 100%;
+	-moz-transition: all 0.3s;
+	-webkit-transition: all 0.3s;
+	transition: all 0.3s;
+}
+
+.zoom:hover {
+	-moz-transform: scale(1.03);
+	-webkit-transform: scale(1.03);
+	transform: scale(1.03);
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0
+		rgba(0, 0, 0, 0.19);
+}
+
+a {
+	color: #dc3545;
+}
+
+a:hover {
+	color: #920c19;
+}
+</style>
+</head>
+<body data-spy="scroll" data-target=".site-navbar-target">
+	<div class="row shadow-sm justify-content-around"
+		style="background-color: #343a40">
+		<h2 class="text-white" style="font-weight: 200;">
+			Três Primeiras Noticias do <a href="https://g1.globo.com/">G1</a>
+		</h2>
+	</div>
+	<div class="container shadow p-0">
+		<div class="row border m-2 zoom bg-white"
+			th:each="info : ${informacao}">
+			<!-- Usei esse ID, apenas para mostrar que esta funcionando -->
+			<div class="col-sm-12 text-center pt-2  ">
+				<h5>
+					Notícia <label class="mb-0" th:utext="${info.getId()+1}"></label>
+				</h5>
+				<div class="w-25 text-center" style="margin-left: auto;margin-right: auto;">
+					<hr class="mt-0 mb-1">
+				</div>
+			</div>
+			<div th:utext="${info.getImagem()}"></div>
+			<div class="imagem"></div>
+			<div class="col-sm" style="margin: auto;">
+				<div th:utext="${info.getCorpo()}"></div>
+			</div>
+		</div>
+
+	</div>
+
+	<script>
+		tempo = $(".bstn-fd-relatedtext");
+		tempo = tempo.children("div.feed-post-metadata");
+		body = $(".feed-post-body");
+		imagem = body.children("div.feed-media-wrapper");
+		titulo = body.children("div.feed-post-body-title");
+		titulo.css("font-size", "25px");
+		imagem.hide();
+		tempo.hide();
+	</script>
+</body>
+</html>
